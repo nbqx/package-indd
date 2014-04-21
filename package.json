@@ -1,0 +1,19 @@
+{
+  "name": "package-indd",
+  "description": "package indd file or create packaged zip file (osx + CS5 only)",
+  "version": "0.0.1",
+  "author": "nbqx",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nbqx/package-indd.git"
+  },
+  "homepage": "https://github.com/nbqx/package-indd",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "jsx-manifest": "0.0.2",
+    "fakestk": "0.0.4",
+    "archiver": "^0.9.0",
+    "rimraf": "^2.2.6"
+  }
+}
