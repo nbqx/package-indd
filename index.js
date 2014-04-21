@@ -28,18 +28,25 @@ function packageIndd(from,to){
   return exec(data);
 };
 
-packageIndd.zipped = function(from,to,removeFolder){
+packageIndd.zipped = function(from,to,removeFolder,next){
   var data = {src: from, dst: to};
   var rf = (removeFolder===undefined)? true : removeFolder;
 
   return exec(data,function(){
-    var out = fs.createWriteStream(data.dst+".zip");
-    zipper(data.dst).pipe(out);
-    out.on('close',function(){
-      if(rf){
-        rimraf.sync(data.dst);
-      }
-    });
+    var zip = zipper(data.dst);
+    
+    if(next===undefined){
+      var out = fs.createWriteStream(data.dst+".zip");
+      zip.pipe(out);
+      out.on('close',function(){
+        if(rf) rimraf.sync(data.dst);
+      });
+    }else{
+      zip.on('end',function(){
+        if(rf) rimraf.sync(data.dst);
+      });
+      next(zip);
+    }
   });
 };
 
