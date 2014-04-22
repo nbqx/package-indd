@@ -8,8 +8,8 @@ var DATA = {
 /* }}@options */
 
 app.scriptPreferences.userInteractionLevel = UserInteractionLevels.NEVER_INTERACT;
-app.open(DATA.src);
-app.activeDocument.packageForPrint(
+app.open(DATA.src,false);
+app.documents.firstItem().packageForPrint(
   DATA.dst, // File
   true, // copyingFonts
   true, // copyingLinkedGraphics
@@ -21,4 +21,4 @@ app.activeDocument.packageForPrint(
   "test", // versionComments
   true // forceSave
 );
-app.activeDocument.close(SaveOptions.NO);
+app.documents.firstItem().close(SaveOptions.NO);
